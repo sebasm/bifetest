@@ -1,20 +1,36 @@
-<div>
-  <div>
-    <label>Usuario: </label>
-    <select>
+<div style="width: 60%; float: left; margin-left: 20%;">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Creador: </label>
+      <select formControlName="user">
+        <option [value]="-1"></option>
+        <option *ngFor='let user of users | async' [value]="user.id">{{user.username}}</option>
+      </select>
+    </div>
+    <!--<div>-->
+      <!--<label>Post id:</label>-->
+      <!--<input type="text" value="44">-->
+    <!--</div>-->
+    <div>
+      <label>Titulo: </label>
+      <input type="text" style="width: 782px;" formControlName="title">
+    </div>
+    <div>
+      <label>Contenido: </label>
+      <textarea type="text" cols="95" style="height: 200px;" formControlName="body"></textarea>
+    </div>
+    <div>
+      <input type="button" value="Mostrar Comentarios" (click)="switchComments()" *ngIf="(id !== null) && !showComments">
+      <input type="button" value="Ocultar Comentarios" (click)="switchComments()" *ngIf="(id !== null) && showComments">
+      <input type="submit" value="Guardar" *ngIf="id === null" [disabled]="!postForm.valid">
+    </div>
+  </form>
 
-    </select>
-  </div>
-  <div>
-    <label>Post id:</label>
-    <input type="text" value="44">
-  </div>
-  <div>
-    <label>Titulo: </label>
-    <input type="text" value="ASDASDASDASDSD">
-  </div>
-  <div>
-    <label>Contenido: </label>
-    <textarea type="text" value="ASDASDASDASDSD"></textarea>
+  <div *ngIf="(id !== null) && showComments">
+    <div *ngFor="let comment of comments" style="margin-bottom: 50px;">
+      <p><strong>Usuario:</strong> {{comment.name}} ({{comment.email}})</p>
+      <h6>Dijo:</h6>
+      <div style="margin-left: 40px;">{{comment.body}}</div>
+    </div>
   </div>
 </div>

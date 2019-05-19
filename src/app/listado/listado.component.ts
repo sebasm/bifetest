@@ -27,11 +27,22 @@ export class ListadoComponent implements OnInit {
   }
 
   filterUser(filterVal: string) {
-    if(filterVal === '-1') {
+    if (filterVal === '-1') {
       this.posts = this.postService.getPosts();
     } else {
       this.posts = this.postService.getPostsByUser(filterVal);
     }
+  }
+
+  deletePost(postId: string) {
+    this.postService.deletePost(postId).subscribe(x => {
+      alert('El post se borro satisftactoriamente');
+      }, error1 => this.errorModal(error1));
+  }
+
+  errorModal(error) {
+    // Manejo del tipo de error e info al usuario de una forma elegante.
+    alert('Ocurrio un error intentando realizar la operacion');
   }
 
 }

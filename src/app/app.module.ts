@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostComponent } from './post/post.component';
 import {PostsService} from './services/posts.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [PostsService],
   bootstrap: [AppComponent]

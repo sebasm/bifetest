@@ -1,0 +1,11 @@
+input, label {
+  display:block;
+}
+
+input, select, textarea {
+  margin-left: 8px;
+}
+
+input[type="button"] {
+  margin:10px 0px 10px 0px;
+}

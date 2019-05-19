@@ -3,7 +3,7 @@
   <div style="display: inline; float: left;">
     <label>Filtrar por autor:</label>
     <select (change)="filterUser($event.target.value)">
-      <option [value]="-1"></option>
+      <option [value]="-1">Todos</option>
       <option *ngFor='let user of users | async' [value]="user.id">{{user.username}}</option>
     </select>
   </div>
@@ -13,7 +13,8 @@
 </div>
 <div style="clear:both">
   <div *ngFor='let post of posts | async' style="margin-left: 10px;">
-    <h4 routerLink="/post/{{post.id}}" style="cursor: pointer;">{{post.title}}</h4>
+    <h4 routerLink="/post/{{post.id}}" style="cursor: pointer; display: inline-block;">{{post.title}}</h4>
+    <a style="display: inline-block; margin-left: 30px; cursor: pointer" title="Borrar Post" (click)="deletePost(post.id)">❌</a>
     <p style="margin-left: 10px;">
       {{post.body}}
     </p>
