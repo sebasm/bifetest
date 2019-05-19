@@ -61,7 +61,9 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.postSubscription.unsubscribe();
+    if (this.postSubscription) {
+      this.postSubscription.unsubscribe();
+    }
     if (this.commentsSubscription) {
       this.commentsSubscription.unsubscribe();
     }

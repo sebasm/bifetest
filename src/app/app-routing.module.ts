@@ -5,6 +5,10 @@ import {PostComponent} from './post/post.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'listado', pathMatch: 'full'
+  },
+  {
     path: 'listado',
     component: ListadoComponent
   },
